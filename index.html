@@ -1,36 +1,94 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link href="css/gravity.css" rel="stylesheet" />
+    <link href="css/gravity.css" rel="stylesheet"/>
     <title></title>
     <meta charset="utf-8"/>
-</head>
-<body>
-<style>
-     html, body {
-         width: 100%;
-         height: 100%;
-         margin: 0px;
-         border: 0;
-         overflow: hidden; /*  Disable scrollbars */
-         display: block;  /* No floating content on sides */
-     }
-     div ul {display: inline-block;list-style: none;width: 225px;}
-    #Debug {
-        font-family: consolas;
-        font-size: 12px;
-    }
-    canvas {
-        background-color: #000000;
-    }
-</style>
-<div>
-    <button onclick="$('#Debug').slideToggle();" type="button">console</button> &nbsp; <label>speed</label> &nbsp; <input id="timeStep" type="number" step=".05" min="0" value=".5"/> &nbsp; <label>reset</label> &nbsp; <button onclick="resetSim();" type="button" id="resetButton">reset</button><br/>
-    <div id="Debug" style="display: none;"></div>
-</div>
-<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 
-<script src="js/gravity.js"></script>
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-theme.css" rel="stylesheet"/>
+    <link href="css/Site.css" rel="stylesheet"/>
+
+    <style>
+    </style>
+</head>
+
+<body>
+<div id="header-wrapper" class="header">
+
+    <header id="header" class="header">
+        <div id="banner" class="banner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="logo"><a href="index.html"><img/>imgHere</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="debuConsole" class="debug-output hidden">
+                            <div><strong>debug console</strong><button type="button" class="btn-success"></button>
+                            </div>
+                            <ul id="debugOutput"></ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="user-block">
+                            <div class="user-info">
+                                Welcome User<br/>
+                            </div>
+                            <div class="logo"><a><img/>img here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-wrapper nav-green">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav id="menu" class="navigation nav-green">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="gravity.html">gravity</a></li>
+                                <li>
+                                    <a >Debug</a>
+                                    <ul>
+                                        <li><a id="debugOutline">Outline</a></li>
+                                        <li><a id="debugConsoleToggle">Show Console</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav-control pull-right">
+                                <li><span id="nav-pin" class="fa fa-thumb-tack nav-pin-up"></span></li>
+                                <li><span id="nav-toggle" class="fa fa-chevron-up"></span></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="container-fluid">
+    Content Here
+</div>
+<footer class="footer-space">
+    <div class="container"></div>
+</footer>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="copyright col-md-8">
+                <span>Joshua Simacek Web Portal</span>
+                <span>Copyright &copy; 1988</span>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</footer>
+
 
 </body>
+
 </html>

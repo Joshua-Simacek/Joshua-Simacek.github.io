@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="css/gravity.css" rel="stylesheet" />
+    <title></title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<style>
+     html, body {
+         width: 100%;
+         height: 100%;
+         margin: 0px;
+         border: 0;
+         overflow: hidden; /*  Disable scrollbars */
+         display: block;  /* No floating content on sides */
+     }
+     div ul {display: inline-block;list-style: none;width: 225px;}
+    #Debug {
+        font-family: consolas;
+        font-size: 12px;
+    }
+    canvas {
+        background-color: #000000;
+    }
+</style>
+<div>
+    <button onclick="$('#Debug').slideToggle();" type="button">console</button><br/>
+    <div id="Debug" style="display: none;"></div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+<script src="js/gravity.js"></script>
+
+</body>
+</html>

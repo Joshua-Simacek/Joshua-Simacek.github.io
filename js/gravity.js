@@ -25,14 +25,13 @@ var fps = 999;
 
 
 function loop() {
-    
-
+    var timeStep = $('#timeStep').val();
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     canvas.clearRect(0, 0, canvas.width, canvas.height);
     bodyInit();
     bodyPaint();
-    bodyMove(.5);
+    bodyMove(timeStep);
     debugUpdate();
 window.requestAnimationFrame(loop);
 }

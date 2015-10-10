@@ -38,6 +38,11 @@ window.requestAnimationFrame(loop);
 window.requestAnimationFrame(loop);
 
 var init = false;
+function resetSim() {
+    body = [];
+    init = false;
+    $('#Debug').html("");
+}
 function Body(b) {
     b.aX = 0;            // acceleration in x direction
     b.aY = 0;            // acceleration in y direction

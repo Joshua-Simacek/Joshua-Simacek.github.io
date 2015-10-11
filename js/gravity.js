@@ -30,7 +30,7 @@ function loop() {
     canvas.height = CANVAS_HEIGHT;
 
     if (running) {
-        canvas.clearRect(0, 0, canvas.width, canvas.height);
+        //canvas.clearRect(0, 0, canvas.width, canvas.height);
         bodyPaint();
         bodyMove(timeStep);
         debugUpdate();
@@ -53,9 +53,9 @@ function resetSim() {
     running = false;
     var preset = $('#presets').val();
     canvas.clearRect(0, 0, canvas.width, canvas.height);
+    $('#Debug').html("");
     bodyInit(preset);
     bodyPaint();
-    $('#Debug').html("");
     $('#pauseButton').html("start");
 }
 var running = true;

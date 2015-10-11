@@ -9,14 +9,19 @@
     z-index: 6;
 }
 
-.banner{
-    height:110px;
-    position:relative;
-    -webkit-box-shadow:0 1px 2px rgba(0,0,0,.1);
-    -moz-box-shadow:0 1px 2px rgba(0,0,0,.1);
-    box-shadow:0 1px 2px rgba(0,0,0,.1);
-    background-image: url(/Content/Assets/logos/header-bg.jpg);
-    background-repeat:repeat-x;
+.banner {
+    height: 110px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 2px #000000;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 2px #000000;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    -ms-box-shadow: 0 1px 2px #000000;
+    box-shadow: 0 1px 2px #000000;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    background-size: auto 110px;
+    background-repeat: repeat-x;
+    background-image: url('../images/tmntbanner.jpg');
 }
 
 .nav-wrapper{

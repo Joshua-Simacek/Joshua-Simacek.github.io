@@ -7,6 +7,7 @@
 
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap-theme.css" rel="stylesheet"/>
+    <link href="css/font-awesome/font-awesome.css" rel="stylesheet" />
     <link href="css/Site.css" rel="stylesheet"/>
 
     <style>
@@ -88,7 +89,53 @@
     </div>
 </footer>
 
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script>
 
+    $('#nav-pin').click(function() {
+        NavPin('#hearder', '#header-wrapper', '#nav-pin');
+    });
+
+    $('#nav-toggle').click(function() {
+        NavToggle('#banner', '#menu', '#nav-toggle', '#header', '#header-wrapper');
+    });
+
+    function NavToggle(banner, menu, toggle, header, wrapper) {
+
+        if ($(toggle).hasClass('fa-chevron-up')) {
+            $(banner).slideUp(600, function () {
+                $(menu).addClass('nav-compact');
+                $(wrapper).css('height', $(menu).css('height'));
+                $(toggle).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            });
+        } else {
+            $(banner).slideDown(600, function () {
+                $(menu).removeClass('nav-compact');
+                $(wrapper).css('height', $(header).css('height'));
+                $(toggle).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            });
+        }
+    }
+
+    function NavPin(header, wrapper, pin) {
+        if ($(pin).hasClass('nav-pin-up')) {
+            $(header).css('position', 'fixed');
+            $(wrapper).css('height', $(header).css('height'));
+            $(pin).removeClass('nav-pin-up').addClass('nav-pin-down');
+        } else {
+            $(header).css('position', 'static');
+            $(pin).removeClass('nav-pin-down').addClass('nav-pin-up');
+        }
+    }
+
+    function ClassToggle(pElement, pClass) {
+        if ($(pElement).hasClass(pClass)) {
+            $(pElement).removeClass(pClass);
+        } else {
+            $(pElement).addClass(pClass);
+        }
+    }
+</script>
 </body>
 
 </html>

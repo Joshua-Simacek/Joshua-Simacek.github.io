@@ -3,46 +3,66 @@
 var CANVAS_WIDTH = 1280;
 var CANVAS_HEIGHT = 720;
 
-var canvasElement = $("<canvas width = '" + window.innerWidth + "' height='" + window.innerHeight + "' ></canvas>");
+var canvasElement = $("<canvas width = '" + CANVAS_WIDTH + "' height='" + CANVAS_HEIGHT + "' ></canvas>");
+//var canvasElement = $("<canvas width = '" + window.innerWidth + "' height='" + window.innerHeight + "' ></canvas>");
 var canvas = canvasElement.get(0).getContext("2d");
-canvasElement.appendTo("body");
-//var body = [];
+canvasElement.appendTo("#canvasHolder");
 
-//bodyPaint();
-//running loop
-var fps = 999;
+//var fps = 999;
 //setInterval(function () {
 //    bodyInit();
 //    canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 //    bodyPaint();
 //    bodyMove(.1);
 //    //debugUpdate();
-    
 //    //body.forEach(function(b) { b.paint(); });
 //    //console.log("loop");
-
 //}, 1000 /fps);
+
+
 
 
 function loop() {
     var timeStep = $('#timeStep').val();
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.clearRect(0, 0, canvas.width, canvas.height);
-    bodyInit();
-    bodyPaint();
-    bodyMove(timeStep);
-    debugUpdate();
+    //canvas.width = window.innerWidth;
+    //canvas.height = window.innerHeight;
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = CANVAS_HEIGHT;
+
+    if (running) {
+        canvas.clearRect(0, 0, canvas.width, canvas.height);
+        bodyPaint();
+        bodyMove(timeStep);
+        debugUpdate();
+    }
 window.requestAnimationFrame(loop);
 }
 window.requestAnimationFrame(loop);
+
+
+
+$(function () {
+    bodyInit();
+    running = true;
+});
 
 var init = false;
 function resetSim() {
     body = [];
     init = false;
+    running = false;
+    var preset = $('#presets').val();
+    canvas.clearRect(0, 0, canvas.width, canvas.height);
+    bodyInit(preset);
+    bodyPaint();
     $('#Debug').html("");
+    $('#pauseButton').html("start");
 }
+var running = true;
+function toggleRun() {
+    running = !running;
+}
+
 function Body(b) {
     b.aX = 0;            // acceleration in x direction
     b.aY = 0;            // acceleration in y direction
@@ -81,20 +101,36 @@ bodyPaint = function () {
     //body.forEach(function (b) { b.paint(); });
 }
 
-
 var body = [];
 bodyInit = function (option) {
-
+    
     if (!init) {
-        body.push(Body({ x: 0, y: 0, m: 200000, vX: .002, vY: -.16, color: "#FFFF00" })); // Yellow
-        body.push(Body({ x: 365, y: 0, m: 1, vX: 0, vY: 25, color: "#00FF00" })); // Green
-        body.push(Body({ x: -150, y: 0, m: 600, vX: 0, vY: 20, color: "#0000FF" })); // Blue
-        body.push(Body({ x: 0, y: 150, m: 60, vX: -25, vY: 0, color: "#FF0000" })); // Red
-        body.push(Body({ x: 350, y: 0, m: 1000, vX: 0, vY: 20, color: "#FFAA00" })); // Orange
+
         init = true;
+
+        switch(option) {
+            case "_default":
+                _default();
+                break;
+            case "fourStarBallet":
+                fourStarBallet();
+                break;
+            case "binaryStars":
+                binaryStars();
+                break;
+            case "binaryStarSystem":
+                binaryStarSystem();
+                break;
+            case "solarSystem":
+                solarySystem();
+                break;
+            default:
+                _default();
+        }
+
         var i = 0;
         body.forEach(function(b) {
-            $("#Debug").append('' +
+            $("#Debug").append(
                 '<ul>' +
                 '<li id="' + i + '_body" style="color: '+ b.color + '"> Body: ' + i + '</li>' +
                 '<li id="' + i + '_m"> _m: ' + b.m + '</li>' +
@@ -135,7 +171,7 @@ bodyMove = function (t) {
                 var g = .6 * body[i].m / (r * r + a);
 
                 //combine colliding bodies
-                if (r < (body[i].r*2) && body[j].m >= body[i].m) {
+                if (r < (body[i].r*1) && body[j].m >= body[i].m) {
 
                     body[j].m += body[i].m;
                     body[j].aX += body[i].aX;
@@ -178,4 +214,74 @@ debugUpdate = function () {
         $('#' + i + '_aY').text(' aY: ' + b.aY);
         i++;
     });
+}
+
+//Presets
+_default = function () {
+    body = [];
+
+    body.push(Body({ x: 0, y: 0, m: 200000, vX: .002, vY: -.16, color: "#FFFF00" })); // Yellow
+    body.push(Body({ x: 365, y: 0, m: 1, vX: 0, vY: 25, color: "#00FF00" }));         // Green
+    body.push(Body({ x: -150, y: 0, m: 600, vX: 0, vY: 20, color: "#0000FF" }));      // Blue
+    body.push(Body({ x: 0, y: 150, m: 60, vX: -25, vY: 0, color: "#FF0000" }));       // Red
+    body.push(Body({ x: 350, y: 0, m: 1000, vX: 0, vY: 20, color: "#FFAA00" }));      // Orange
+}
+
+fourStarBallet = function() {
+    body = [];
+
+    body.push(Body({ x:150 , y:0 ,  m: 200000, vX: 0, vY:15, color: "#00ff00" }));
+    body.push(Body({ x: 0, y: 150,  m: 200000, vX: -15, vY: 0, color: "#ff0000" }));
+    body.push(Body({ x: -150, y: 0, m: 200000, vX: 0, vY: -15, color: "#0000ff" }));
+    body.push(Body({ x: 0, y: -150, m: 200000, vX: 15, vY: 0, color: "#ffff00" }));
+}
+
+binaryStars = function() {
+    body = [];
+
+    body.push(Body({ x: 100, y: 0, m: 200000, vX: 0, vY: 15, color: "#00ff00" }));
+    body.push(Body({ x: -100, y: 0, m: 200000, vX: 0, vY: -15, color: "#ffff00" }));
+}
+
+binaryStarSystem =function() {
+    body = [];
+
+    body.push(Body({ x: 50, y: 0, m: 200000, vX: 0, vY: 20, color: "#00ff00" }));
+    body.push(Body({ x: -50, y: 0, m: 200000, vX: 0, vY: -20, color: "#ffff00" }));
+    body.push(Body({ x: 300, y: 0, m: 600, vX: 0, vY: 30, color: "#0000ff" }));
+    body.push(Body({ x: 290, y: 0, m: 1, vX: 0, vY: 33, color: "#ffffff" }));
+    body.push(Body({ x: 450, y: 0, m: 1000, vX: 0, vY: 25, color: "#ffaa00" }));
+    body.push(Body({ x: 460, y: 0, m: 5, vX: 0, vY: 30, color: "#ff0000" }));
+}
+
+solarySystem = function() {
+    body = [];
+
+    var name = ["Sun", "Mercury", "Venus", "Earth", "Mars",
+         "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"];
+
+    var E = 65;
+    var mass = [
+        33295*E,  //sun mass
+        0.0058*E, //mercury mass
+        0.815*E,  //venus mass
+        1*E,      //earth mass
+        0.107*E,  //mars mass
+        318*E,    //jupiter mass
+        95.1*E,   //saturn mass
+        14.5*E,   //uranus mass
+        17.2*E,   //neptune mass
+        0.01*E    //pluto mass
+    ];
+
+    var distance = [0, 57.9, 108, 150, 228, 778, 1430, 2870, 4500, 5900];
+    var velocity = [0, 172.7, 126.3, 107.4, 87, 47.2, 34.8, 24.5, 19.6, 17.1];
+
+    var colors = ["#ffff00", "#333333", "#00FF00", "#0000ff", "#ff0000", "ffaa00", "#ffffff", "#00ff00", "#00ffff", "#ffaa00"];
+
+    var n = name.length;
+
+    for (var j = 0; j < n; j++) {
+        body.push(Body({ x: distance[j], y: 0, m: mass[j], vX: 0, vY: velocity[j], color: colors[j], rC: .3 }));
+    }
 }

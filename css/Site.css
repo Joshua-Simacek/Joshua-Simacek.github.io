@@ -21,7 +21,14 @@
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
     background-size: auto 110px;
     background-repeat: repeat-x;
+}
+
+.banner.tmnt {
     background-image: url('../images/tmntbanner.jpg');
+}
+
+.banner.banner-heart {
+    background-image: url('../images/heartbanner.jpg');
 }
 
 .nav-wrapper{
@@ -52,6 +59,18 @@
     padding:10px 0 30px 0;
     font-size:12px;
     bottom:0;
+}
+
+.footer span {
+    font-family: 'Segoe UI', Tahoma, Geneva, Erdana, sans-serif;
+}
+
+.footer span:first-child {
+    font-size: small;
+}
+.footer span:last-child {
+    font-size: x-small;
+    font-style: italic;
 }
 
 
@@ -221,7 +240,7 @@
 }
 
 .nav-compact .nav-control span{
-    padding: 5px 10px;
+    padding: 7px 10px;
 }
 .navigation.nav-compact{
     height: 30px;
@@ -279,13 +298,35 @@ background-image: -ms-linear-gradient(bottom, #00cc00 29%, #00AA00 79%, #009900 
     background-repeat: repeat-x;
 }
 
+.nav-wrapper.nav-pink {
+    background-color: #dd0077;
+}
+
+.navigation.nav-pink > ul > li > ul li:hover > a, .navigation.nav-pink > ul > li:hover > a {
+    background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0.28, #FF0099),
+	color-stop(0.74, #ED0096),
+	color-stop(1, #CC0066)
+);
+background-image: -o-linear-gradient(bottom, #FF0099 28%, #ED0096 74%, #CC0066 100%);
+background-image: -moz-linear-gradient(bottom, #FF0099 28%, #ED0096 74%, #CC0066 100%);
+background-image: -webkit-linear-gradient(bottom, #FF0099 28%, #ED0096 74%, #CC0066 100%);
+background-image: -ms-linear-gradient(bottom, #FF0099 28%, #ED0096 74%, #CC0066 100%);
+background-image: linear-gradient(to bottom, #FF0099 28%, #ED0096 74%, #CC0066 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffFF0099', endColorstr='#ffCC0066', GradientType=0);
+    background-repeat: repeat-x;
+}
+
 /*********************************************/
 
 .nav-control span{
     border: 1px solid transparent;
     color: #ffffff;
     transition: all 0.3s ease 0.1s;
-    padding: 15px 10px; 
+    padding: 17px 10px; 
     font-size: 12px;
     cursor: pointer;
 }
